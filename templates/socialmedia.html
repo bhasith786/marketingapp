@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simcursa - Social Media Marketing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/digital-marketing-1.jpg') }}") no-repeat center center/cover;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      width: 90%;
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 30px 35px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    }
+    .logo { display: block; margin: 0 auto 15px; width: 120px; }
+    h2 { text-align: center; margin-bottom: 25px; font-size: 24px; color: #f0f0f0; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 10px; vertical-align: top; }
+    label { font-weight: bold; color: #f5f5f5; }
+    input[type="text"] { width: 100%; padding: 8px; border: none; border-radius: 8px; outline: none; font-size: 15px; margin-top: 5px; }
+    input[type="radio"], input[type="checkbox"] { margin-right: 6px; }
+    .button-group { display: flex; justify-content: space-between; margin-top: 25px; }
+    input[type="submit"], .back-btn { width: 48%; background: plum; color: white; font-weight: bold; cursor: pointer; border: none; border-radius: 8px; padding: 12px; transition: 0.3s; }
+    input[type="submit"]:hover, .back-btn:hover { background: plum; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
+    <h2 style="color: plum;">Social Media Marketing</h2>
+    <form id="platformForm" action="{{ url_for('submit') }}" method="post">
+      <input type="hidden" name="form_source" value="socialmedia">
+      <table>
+        <tr>
+          <td><label>Platforms:</label></td>
+          <td>
+            <input type="checkbox" name="location" value="Google"> Google<br>
+            <input type="checkbox" name="location" value="Youtube"> Youtube<br>
+            <input type="checkbox" name="location" value="Instagram"> Instagram<br>
+            <input type="checkbox" name="location" value="Facebook"> Facebook
+          </td>
+        </tr>
+        <tr>
+          <td><label>Influencers:</label></td>
+          <td>
+            <input type="radio" name="influencers" value="influencers->from yourside" required> From yourside<br>
+            <input type="radio" name="influencers" value="influencers->from client"> From us
+          </td>
+        </tr>
+        <tr>
+          <td><label>Posters:</label></td>
+          <td>
+            <input type="radio" name="posters" value="posters->from yourside" required> From yourside<br>
+            <input type="radio" name="posters" value="posters->from client"> From us
+          </td>
+        </tr>
+        <tr>
+            <td><label>Weekly Plan:</label></td>
+            <td>
+                <input type="radio" name="weekly" value="weekly->2videos" required> 2 Videos<br>
+                <input type="radio" name="weekly" value="weekly->2videos_2posters"> 2 Videos & 2 Posters<br>
+                <input type="radio" name="weekly" value="weekly->7posters_2videos"> 7 Posters & 2 Videos<br>
+                <input type="radio" name="weekly" value="weekly->2posters"> 2 Posters<br>
+                <input type="radio" id="weekly_others" name="weekly" value="weekly->"> Others:
+                <input type="text" id="others_desc" name="others_desc" placeholder="Describe here" disabled>
+            </td>
+        </tr>
+      </table>
+      <div class="button-group">
+        <button type="button" class="back-btn" onclick="window.location.href='{{ url_for('digital_marketing') }}'">⬅ Back</button>
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+  <script>
+    // Weekly Others logic
+    const otherRadio = document.getElementById("weekly_others");
+    const otherInput = document.getElementById("others_desc");
+    const radios = document.querySelectorAll("input[name='weekly']");
+    radios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        if (otherRadio.checked) {
+          otherInput.disabled = false;
+          otherInput.required = true;
+          otherInput.focus();
+        } else {
+          otherInput.disabled = true;
+          otherInput.required = false;
+          otherInput.value = "";
+        }
+      });
+    });
+
+    // At least one checkbox required
+    document.getElementById('platformForm').addEventListener('submit', function(e) {
+      const checkboxes = document.querySelectorAll('input[name="location"]:checked');
+      if (checkboxes.length === 0) {
+        e.preventDefault();
+        alert('Please select at least one platform.');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simcursa | Welcome</title>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/Marketing.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    img.logo {
+      width: 100px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background: gray;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
+    <h2 style="color: plum;">Welcome to Simcura RX</h2>
+    <form action="{{ url_for('submit') }}" method="POST">
+      <input type="hidden" name="form_source" value="index">
+      <input type="text" name="name" placeholder="Name" required><br>
+      <input type="tel" name="phone" placeholder="Phone Number" required><br>
+      <input type="tel" name="altphone" placeholder="Alt Phone Number"><br>
+      <input type="text" name="company" placeholder="Company Name"><br>
+      <button type="submit">Services</button>
+    </form>
+  </div>
+</body>
+</html>

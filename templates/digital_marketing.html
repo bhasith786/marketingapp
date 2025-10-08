@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simcursa | Digital Marketing</title>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/digital-marketing-1.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    img.logo {
+      width: 100px;
+    }
+    .option {
+      background: #007bff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #0056b3;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
+    <h2>Digital Marketing</h2>
+    <div class="option"><a href="{{ url_for('traditional_marketing') }}">Traditional Marketing</a></div>
+    <div class="option"><a href="{{ url_for('socialmedia') }}">Social Media Marketing</a></div>
+    <a href="{{ url_for('services') }}" style="color:yellow;display:block;margin-top:10px;">← Back</a>
+  </div>
+</body>
+</html>

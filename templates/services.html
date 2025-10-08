@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simcura RX| Services</title>
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='images/Marketing.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    img.logo {
+      width: 100px;
+    }
+    .service {
+      background: gray;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .service:hover {
+      background: #0056b3;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
+    <h2 style="color: plum;">Our Services</h2>
+    <div class="service"><a href="{{ url_for('digital_marketing') }}">Digital Marketing</a></div>
+    <div class="service"><a href="{{ url_for('seo_page') }}">SEO</a></div>
+    <div class="service"><a href="{{ url_for('ads') }}">Ads</a></div>
+  </div>
+</body>
+</html>
