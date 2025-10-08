@@ -1,9 +1,21 @@
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 from flask import Flask, render_template, request, redirect, url_for
 import csv
 import os
 
 app = Flask(__name__)
 
+
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+client = gspread.authorize(creds)
+sheet = client.open("submission_list").sheet1
 # ---- HOME & SERVICE ROUTES ----
 @app.route('/')
 def home():
@@ -19,11 +31,11 @@ def digital_marketing():
 
 @app.route('/seo')
 def seo():
-    return render_template('seo.html')
+    return render_template('SEO.html')
 
 @app.route('/ads')
 def ads():
-    return render_template('ads.html')
+    return render_template('ADs.html')
 
 @app.route('/traditional_marketing')
 def traditional_marketing():
@@ -46,29 +58,34 @@ def thankyou():
 # ---- FORM SUBMISSION ----
 @app.route('/submit', methods=['POST'])
 def submit():
-    # Use flat=False to capture multiple checkbox values as a list
-    data = request.form.to_dict(flat=False)
+    data = request.form.to_dict()
 
-    # Convert checkbox list to comma-separated string for CSV
-    if 'location' in data:
-        if isinstance(data['location'], list):
-            data['location'] = ', '.join(data['location'])
+    # Save data to Google Sheet
+    sheet.append_row(list(data.values()))
 
-    file_exists = os.path.isfile('submissions.csv')
-    with open('submissions.csv', 'a', newline='', encoding='utf-8') as f:
-        writer = csv.DictWriter(f, fieldnames=data.keys())
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow(data)
-
-    form_source = data.get('form_source', ['index'])[0]
-
+    form_source = data.get('form_source')
     if form_source == 'index':
         return redirect(url_for('services'))
-    elif form_source in ['traditional_marketing', 'socialmedia','seo']:
+    else: 
         return redirect(url_for('thankyou'))
-    else:
-        return redirect(url_for('thankyou'))
+    
+@app.route('/submissions')
+def submissions():
+    rows = sheet.get_all_values()
+    if not rows:
+        return "No submissions yet."
+    
+    header = rows[0]
+    data_rows = rows[1:]
+    
+    html = "<h2>Submissions</h2><table border='1' cellpadding='6' style='border-collapse:collapse'>"
+    html += "<tr>" + "".join(f"<th>{c}</th>" for c in header) + "</tr>"
+    for r in data_rows:
+        html += "<tr>" + "".join(f"<td>{cell}</td>" for cell in r) + "</tr>"
+    html += "</table>"
+    
+    return render_template_string(html)
+
 
 
 if __name__ == '__main__':
