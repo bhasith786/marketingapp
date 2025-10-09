@@ -41,10 +41,10 @@
         <tr>
           <td><label>Platforms:</label></td>
           <td>
-            <input type="checkbox" name="location" value="platforms->Google"> Google<br>
-            <input type="checkbox" name="location" value="platforms->Youtube"> Youtube<br>
-            <input type="checkbox" name="location" value="platforms->Facebook"> Facebook<br>
-            <input type="checkbox" name="location" value="platforms->Instagram"> Instagram
+            <input type="checkbox" name="platf" value="Google"> Google<br>
+            <input type="checkbox" name="platf" value="Youtube"> Youtube<br>
+            <input type="checkbox" name="platf" value="Facebook"> Facebook<br>
+            <input type="checkbox" name="platf" value="Instagram"> Instagram
           </td>
         </tr>
       </table>
@@ -55,11 +55,12 @@
   <script>
     // At least one checkbox required
     document.getElementById('seoForm').addEventListener('submit', function(e) {
-      const checkboxes = document.querySelectorAll('input[name="location"]:checked');
-      if (checkboxes.length === 0) {
-        e.preventDefault();
-        alert('Please select at least one platform.');
-      }
+    const checkboxes = document.querySelectorAll('input[name="platf"]:checked');
+    if (checkboxes.length === 0) {
+      e.preventDefault();
+      alert('Please select at least one platform.');
+}
+
     });
   </script>
 </body>
