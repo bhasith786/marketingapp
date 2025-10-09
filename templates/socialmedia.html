@@ -43,33 +43,33 @@
         <tr>
           <td><label>Platforms:</label></td>
           <td>
-            <input type="checkbox" name="location" value="Google"> Google<br>
-            <input type="checkbox" name="location" value="Youtube"> Youtube<br>
-            <input type="checkbox" name="location" value="Instagram"> Instagram<br>
-            <input type="checkbox" name="location" value="Facebook"> Facebook
+            <input type="checkbox" name="platf" value="Google"> Google<br>
+            <input type="checkbox" name="platf" value="Youtube"> Youtube<br>
+            <input type="checkbox" name="platf" value="Instagram"> Instagram<br>
+            <input type="checkbox" name="platf" value="Facebook"> Facebook
           </td>
         </tr>
         <tr>
           <td><label>Influencers:</label></td>
           <td>
-            <input type="radio" name="influencers" value="influencers->from yourside" required> From yourside<br>
-            <input type="radio" name="influencers" value="influencers->from client"> From us
+            <input type="radio" name="influencers" value="socialmediamarketing->>influencers-> yourside" required> From yourside<br>
+            <input type="radio" name="influencers" value="socialmediamarketing->>influencers->from client"> From us
           </td>
         </tr>
         <tr>
           <td><label>Posters:</label></td>
           <td>
-            <input type="radio" name="posters" value="posters->from yourside" required> From yourside<br>
-            <input type="radio" name="posters" value="posters->from client"> From us
+            <input type="radio" name="posters" value="from yourside" required> From yourside<br>
+            <input type="radio" name="posters" value="from client"> From us
           </td>
         </tr>
         <tr>
             <td><label>Weekly Plan:</label></td>
             <td>
-                <input type="radio" name="weekly" value="weekly->2videos" required> 2 Videos<br>
-                <input type="radio" name="weekly" value="weekly->2videos_2posters"> 2 Videos & 2 Posters<br>
-                <input type="radio" name="weekly" value="weekly->7posters_2videos"> 7 Posters & 2 Videos<br>
-                <input type="radio" name="weekly" value="weekly->2posters"> 2 Posters<br>
+                <input type="radio" name="weekly" value="2videos" required> 2 Videos<br>
+                <input type="radio" name="weekly" value="2videos_2posters"> 2 Videos & 2 Posters<br>
+                <input type="radio" name="weekly" value="7posters_2videos"> 7 Posters & 2 Videos<br>
+                <input type="radio" name="weekly" value="2posters"> 2 Posters<br>
                 <input type="radio" id="weekly_others" name="weekly" value="weekly->"> Others:
                 <input type="text" id="others_desc" name="others_desc" placeholder="Describe here" disabled>
             </td>
@@ -82,32 +82,36 @@
     </form>
   </div>
   <script>
-    // Weekly Others logic
-    const otherRadio = document.getElementById("weekly_others");
-    const otherInput = document.getElementById("others_desc");
-    const radios = document.querySelectorAll("input[name='weekly']");
-    radios.forEach(radio => {
-      radio.addEventListener("change", () => {
-        if (otherRadio.checked) {
-          otherInput.disabled = false;
-          otherInput.required = true;
-          otherInput.focus();
-        } else {
-          otherInput.disabled = true;
-          otherInput.required = false;
-          otherInput.value = "";
-        }
-      });
-    });
-
-    // At least one checkbox required
-    document.getElementById('platformForm').addEventListener('submit', function(e) {
-      const checkboxes = document.querySelectorAll('input[name="location"]:checked');
-      if (checkboxes.length === 0) {
-        e.preventDefault();
-        alert('Please select at least one platform.');
+  // Weekly Others logic
+  const otherRadio = document.getElementById("weekly_others");
+  const otherInput = document.getElementById("others_desc");
+  const radios = document.querySelectorAll("input[name='weekly']");
+  radios.forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (otherRadio.checked) {
+        otherInput.disabled = false;
+        otherInput.required = true;
+        otherInput.focus();
+      } else {
+        otherInput.disabled = true;
+        otherInput.required = false;
+        otherInput.value = "";
       }
     });
+  });
+
+  // At least one checkbox required
+    document.getElementById('platformForm').addEventListener('submit', function(e) {
+    // Get all checkboxes with name 'platf' that are checked
+    const checkboxes = document.querySelectorAll('input[name="platf"]:checked');
+    
+    // Only alert if NONE are selected
+    if (checkboxes.length === 0) {
+      e.preventDefault();
+      alert('Please select at least one platform.');
+     }
+    });
   </script>
+
 </body>
 </html>
