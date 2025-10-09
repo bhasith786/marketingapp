@@ -25,19 +25,19 @@
     img.logo {
       width: 100px;
     }
-    .option {
+    a.option {
+      display: block;
       background: #007bff;
       padding: 15px;
       margin: 10px 0;
       border-radius: 5px;
-      cursor: pointer;
-    }
-    .option:hover {
-      background: #0056b3;
-    }
-    a {
-      color: white;
       text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    a.option:hover {
+      background: #0056b3;
     }
   </style>
 </head>
@@ -45,8 +45,10 @@
   <div class="container">
     <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
     <h2>Digital Marketing</h2>
-    <div class="option"><a href="{{ url_for('traditional_marketing') }}">Traditional Marketing</a></div>
-    <div class="option"><a href="{{ url_for('socialmedia') }}">Social Media Marketing</a></div>
+
+    <a href="{{ url_for('traditional_marketing') }}" class="option">Traditional Marketing</a>
+    <a href="{{ url_for('socialmedia') }}" class="option">Social Media Marketing</a>
+    
     <a href="{{ url_for('services') }}" style="color:yellow;display:block;margin-top:10px;">← Back</a>
   </div>
 </body>
