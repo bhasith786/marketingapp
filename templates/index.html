@@ -5,50 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simcura | Welcome</title>
   <style>
-    body {
-      background-image: url("{{ url_for('static', filename='images/image5.jpeg') }}");
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
+    * {
+      box-sizing: border-box;
+    }
+
+     body {
       margin: 0;
       padding: 0;
+      font-family: Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/front2.jpg') }}") no-repeat center center;
+      background-size: cover;        /* Ensures full coverage */
+      background-attachment: fixed;  /* Keeps it steady on scroll */
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end;     /* Moves form to white space on large screens */
+      align-items: center;
+      transition: all 0.3s ease;
     }
+
     .container {
-      background: rgba(0, 0, 0, 0.6);
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 15px;
+      background: transparent;  /* removes the white box */
+      box-shadow: none;         /* removes shadow */
+      border-radius: 0;         /* removes rounded edges */
+      color: white;             /* optional – makes text visible if background is dark */
+      width: 380px;
+      padding: 30px;
+      margin-right: 8%;
+      text-align: center;
     }
+    
+
     img.logo {
-      width: 100px;
+      width: 80px;
+      margin-bottom: 10px;
     }
+
+    h2 {
+      font-family: 'Century Gothic', Arial, sans-serif;
+      color: #6c63ff;
+      margin-bottom: 15px;
+    }
+
     input {
       width: 90%;
       padding: 10px;
       margin: 10px 0;
-      border: none;
+      border: 1px solid #ccc;
       border-radius: 5px;
+      outline: none;
     }
+
     button {
-      padding: 10px 20px;
-      background: gray;
+      width: 90%;
+      padding: 10px;
+      background: #6c63ff;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
     }
+
     button:hover {
-      background: #0056b3;
+      background: #4a47d1;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      body {
+        justify-content: center;  /* Center form for tablets */
+        background-position: center center;
+      }
+
+      .container {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        background-size: contain;   /* Keeps image visible without cropping */
+        background-position: top;
+        height: auto;
+        padding: 20px;
+      }
+
+      .container {
+        width: 90%;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      img.logo {
+        width: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background-size: cover;
+        background-position: top;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 16px;
+      }
+
+      img.logo {
+        width: 60px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label, td {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
-    <h2 style="color: plum;">Welcome to Simcura RX</h2>
+    <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcura Logo" class="logo">
+    <h2>Welcome to Simcura RX</h2>
     <form action="{{ url_for('submit') }}" method="POST">
       <input type="hidden" name="form_source" value="index">
       <input type="text" name="name" placeholder="Name" required><br>
