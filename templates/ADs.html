@@ -7,19 +7,25 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url("{{ url_for('static', filename='images/image4.jpg') }}") no-repeat center center/cover;
+      background: url("{{ url_for('static', filename='images/ad[1].jpg') }}") no-repeat center center/cover;
       color: #fff;
       margin: 0;
       padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      height: 100vh;
     }
     .container {
-      background: rgba(0, 0, 0, 0.6);
-      width: 90%;
-      max-width: 650px;
-      margin: 60px auto;
-      padding: 30px 35px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+      background: rgba(0,0,0, 0.6);
+      width: 360px;
+      padding: 28px;
+      border-radius: 14px;
+      margin-right: 8%;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      text-align: center;
     }
     .logo { display: block; margin: 0 auto 15px; width: 120px; }
     h2 { text-align: center; margin-bottom: 25px; font-size: 24px; color: #f0f0f0; }
@@ -29,6 +35,36 @@
     input[type="checkbox"] { margin-right: 6px; }
     input[type="submit"], .back-btn { width: 48%; background: plum; color: white; font-weight: bold; cursor: pointer; border: none; border-radius: 8px; padding: 12px; margin-top: 20px; transition: 0.3s; }
     input[type="submit"]:hover, .back-btn:hover { background: plum; }
+    @media (max-width: 768px) {
+      body {
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 85%;
+        margin-right: 0;
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 16px;
+      }
+
+      img.logo {
+        width: 60px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label, td {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
