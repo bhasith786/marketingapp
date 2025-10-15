@@ -5,113 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simcursa - Social Media Marketing</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: url("{{ url_for('static', filename='images/digital-marketing-1.jpg') }}") no-repeat center center/cover;
-      color: #fff;
+     body {
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      font-family: 'Century Gothic', Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/digital_marketing2.jpg') }}") no-repeat center center;
+      background-size: cover;
+      color: white; /* All text default white */
+      transition: all 0.3s ease;
     }
+
     .container {
       background: rgba(0, 0, 0, 0.6);
-      width: 90%;
-      max-width: 650px;
-      margin: 60px auto;
-      padding: 30px 35px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+      width: 360px;
+      padding: 28px;
+      border-radius: 14px;
+      margin-right: 7%;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+      text-align: left;
     }
-    .logo { display: block; margin: 0 auto 15px; width: 120px; }
-    h2 { text-align: center; margin-bottom: 25px; font-size: 24px; color: #f0f0f0; }
-    table { width: 100%; border-collapse: collapse; }
-    td { padding: 10px; vertical-align: top; }
-    label { font-weight: bold; color: #f5f5f5; }
-    input[type="text"] { width: 100%; padding: 8px; border: none; border-radius: 8px; outline: none; font-size: 15px; margin-top: 5px; }
-    input[type="radio"], input[type="checkbox"] { margin-right: 6px; }
-    .button-group { display: flex; justify-content: space-between; margin-top: 25px; }
-    input[type="submit"], .back-btn { width: 48%; background: plum; color: white; font-weight: bold; cursor: pointer; border: none; border-radius: 8px; padding: 12px; transition: 0.3s; }
-    input[type="submit"]:hover, .back-btn:hover { background: plum; }
+
+    .logo {
+      display: block;
+      margin: 0 auto 8px;
+      width: 90px;
+      height: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 6px 0 18px;
+      font-size: 22px;
+      color: plum;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 6px 4px;
+      vertical-align: top;
+      color: white; /* table text white */
+    }
+
+    label {
+      font-weight: 500;
+      color: white;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      accent-color: plum; /* Optional: pretty input color */
+    }
+
+    input[type="text"] {
+      padding: 7px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      gap: 10px;
+    }
+
+    input[type="submit"], .back-btn {
+      width: 48%;
+      background: plum;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      transition: 0.2s;
+    }
+
+    input[type="submit"]:hover, .back-btn:hover {
+      background: rgb(206,110,206);
+    }
+
+    @media (max-width: 768px) {
+      body { justify-content: center; align-items: center; }
+      .container { width: 92%; margin-right: 0; padding: 20px; }
+      .logo { width: 70px; }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 16px;
+      }
+
+      img.logo {
+        width: 60px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label, td {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcursa Logo" class="logo">
-    <h2 style="color: plum;">Social Media Marketing</h2>
+    <h2>Social Media Marketing</h2>
+
     <form id="platformForm" action="{{ url_for('submit') }}" method="post">
       <input type="hidden" name="form_source" value="socialmedia">
+
       <table>
         <tr>
           <td><label>Platforms:</label></td>
           <td>
-            <input type="checkbox" name="platf" value="Google"> Google<br>
-            <input type="checkbox" name="platf" value="Youtube"> Youtube<br>
-            <input type="checkbox" name="platf" value="Instagram"> Instagram<br>
-            <input type="checkbox" name="platf" value="Facebook"> Facebook
+            <label><input type="checkbox" name="platf" value="Google"> Google</label><br>
+            <label><input type="checkbox" name="platf" value="Youtube"> Youtube</label><br>
+            <label><input type="checkbox" name="platf" value="Instagram"> Instagram</label><br>
+            <label><input type="checkbox" name="platf" value="Facebook"> Facebook</label>
           </td>
         </tr>
+
         <tr>
           <td><label>Influencers:</label></td>
           <td>
-            <input type="radio" name="influencers" value="socialmediamarketing->>influencers-> yourside" required> From yourside<br>
-            <input type="radio" name="influencers" value="socialmediamarketing->>influencers->from client"> From us
+            <label><input type="radio" name="influencers" value="socialmediamarketing->>influencers->yourside" required> From yourside</label><br>
+            <label><input type="radio" name="influencers" value="socialmediamarketing->>influencers->from client"> From us</label>
           </td>
         </tr>
+
         <tr>
           <td><label>Posters:</label></td>
           <td>
-            <input type="radio" name="posters" value="from yourside" required> From yourside<br>
-            <input type="radio" name="posters" value="from client"> From us
+            <label><input type="radio" name="posters" value="from yourside" required> From yourside</label><br>
+            <label><input type="radio" name="posters" value="from client"> From us</label>
           </td>
         </tr>
+
         <tr>
-            <td><label>Weekly Plan:</label></td>
-            <td>
-                <input type="radio" name="weekly" value="2videos" required> 2 Videos<br>
-                <input type="radio" name="weekly" value="2videos_2posters"> 2 Videos & 2 Posters<br>
-                <input type="radio" name="weekly" value="7posters_2videos"> 7 Posters & 2 Videos<br>
-                <input type="radio" name="weekly" value="2posters"> 2 Posters<br>
-                <input type="radio" id="weekly_others" name="weekly" value="weekly->"> Others:
-                <input type="text" id="others_desc" name="others_desc" placeholder="Describe here" disabled>
-            </td>
+          <td><label>Weekly Plan:</label></td>
+          <td>
+            <label><input type="radio" name="weekly" value="2videos" required> 2 Videos</label><br>
+            <label><input type="radio" name="weekly" value="2videos_2posters"> 2 Videos & 2 Posters</label><br>
+            <label><input type="radio" name="weekly" value="7posters_2videos"> 7 Posters & 2 Videos</label><br>
+            <label><input type="radio" name="weekly" value="2posters"> 2 Posters</label><br>
+            <label>
+              <input type="radio" id="weekly_others" name="weekly" value="weekly->">
+              Others:
+            </label>
+            <input type="text" id="others_desc" name="others_desc" placeholder="Describe here" disabled>
+          </td>
         </tr>
       </table>
+
       <div class="button-group">
         <button type="button" class="back-btn" onclick="window.location.href='{{ url_for('digital_marketing') }}'">⬅ Back</button>
         <input type="submit" value="Submit">
       </div>
     </form>
   </div>
+
   <script>
-  // Weekly Others logic
-  const otherRadio = document.getElementById("weekly_others");
-  const otherInput = document.getElementById("others_desc");
-  const radios = document.querySelectorAll("input[name='weekly']");
-  radios.forEach(radio => {
-    radio.addEventListener("change", () => {
-      if (otherRadio.checked) {
-        otherInput.disabled = false;
-        otherInput.required = true;
-        otherInput.focus();
-      } else {
-        otherInput.disabled = true;
-        otherInput.required = false;
-        otherInput.value = "";
+    const otherRadio = document.getElementById("weekly_others");
+    const otherInput = document.getElementById("others_desc");
+    const radios = document.querySelectorAll("input[name='weekly']");
+    radios.forEach(radio => {
+      radio.addEventListener("change", () => {
+        otherInput.disabled = !otherRadio.checked;
+        otherInput.required = otherRadio.checked;
+        if (otherRadio.checked) otherInput.focus();
+        else otherInput.value = "";
+      });
+    });
+
+    document.getElementById('platformForm').addEventListener('submit', function(e) {
+      const checkboxes = document.querySelectorAll('input[name="platf"]:checked');
+      if (checkboxes.length === 0) {
+        e.preventDefault();
+        alert('Please select at least one platform.');
       }
     });
-  });
-
-  // At least one checkbox required
-    document.getElementById('platformForm').addEventListener('submit', function(e) {
-    // Get all checkboxes with name 'platf' that are checked
-    const checkboxes = document.querySelectorAll('input[name="platf"]:checked');
-    
-    // Only alert if NONE are selected
-    if (checkboxes.length === 0) {
-      e.preventDefault();
-      alert('Please select at least one platform.');
-     }
-    });
   </script>
-
 </body>
 </html>
