@@ -5,45 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simcura RX | Services</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-image: url("{{ url_for('static', filename='images/image5.jpeg') }}");
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      color: #fff;
       margin: 0;
       padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end; /* Places content on the white area (right) */
+      align-items: center;
+      font-family: 'Century Gothic', Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/front2.jpg') }}") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      transition: all 0.3s ease;
     }
+
     .container {
-      background: rgba(0, 0, 0, 0.6);
-      max-width: 500px;
-      margin: 100px auto;
+       background: transparent;  /* removes the white box */
+      box-shadow: none;         /* removes shadow */
+      border-radius: 0;         /* removes rounded edges */
+      color: white;             /* optional – makes text visible if background is dark */
+      width: 380px;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin-right: 8%;
+      text-align: center;
     }
+
+    label, td {
+      color: black;
+    }
+
     img.logo {
       width: 100px;
       margin-bottom: 10px;
     }
+
     h2 {
-      color: plum;
+      color: violet;
       margin-bottom: 20px;
     }
+
     table {
       margin: 0 auto;
       border-collapse: collapse;
       text-align: left;
       width: 100%;
     }
+
     td {
       padding: 10px;
       font-size: 16px;
     }
+
     label {
       cursor: pointer;
     }
+
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -53,34 +76,98 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
+      transition: 0.3s;
     }
+
     button:hover {
       background: #0056b3;
+    }
+
+    /* ---- Responsive Design ---- */
+    @media (max-width: 1024px) {
+      body {
+        justify-content: center; /* Center on tablets */
+        background-position: center center;
+      }
+      .container {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: contain; /* Keeps image fully visible */
+        background-position: top;
+        height: auto;
+        padding: 20px;
+      }
+
+      .container {
+        width: 90%;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      img.logo {
+        width: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background-size: cover;
+        background-position: top;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 16px;
+      }
+
+      img.logo {
+        width: 60px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label, td {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <img src="{{ url_for('static', filename='images/Simcuralogo.png') }}" alt="Simcura Logo" class="logo">
-    <h2>Select the Service You’re Interested In</h2>
+    <h2>Select any Service needed</h2>
 
     <form action="{{ url_for('submit') }}" method="POST">
       <table>
         <tr>
           <td><input type="radio" name="services" value="digital_marketing" id="digital_marketing" required></td>
-          <td><label for="digital_marketing">Digital Marketing</label></td>
+          <td><label for="digital_marketing"><b>Digital Marketing</b></label></td>
         </tr>
         <tr>
           <td><input type="radio" name="services" value="seo" id="seo"></td>
-          <td><label for="seo">SEO (Search Engine Optimization)</label></td>
+          <td><label for="seo"><b>SEO (Search Engine Optimization)</b></label></td>
         </tr>
         <tr>
           <td><input type="radio" name="services" value="ads" id="ads"></td>
-          <td><label for="ads">Advertising (Meta Ads, Google Ads)</label></td>
+          <td><label for="ads"><b>Advertising</b></label> </label></label></td>
         </tr>
       </table>
 
-      <!-- Hidden field to track source page -->
       <input type="hidden" name="form_source" value="services">
 
       <button type="submit">Continue</button>
