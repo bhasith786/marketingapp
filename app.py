@@ -17,11 +17,20 @@ scope = [
 
 # Load credentials from environment or local
 creds_json = os.environ.get("GOOGLE_CREDS")
-if creds_json:
-    creds_dict = json.loads(creds_json)
+
+if creds_json and creds_json.strip():  # ensures not empty
+    try:
+        creds_dict = json.loads(creds_json)
+        print("✅ Loaded credentials from environment variable.")
+    except json.JSONDecodeError:
+        print("⚠️ GOOGLE_CREDS is not valid JSON, falling back to local file.")
+        with open("credentials.json", "r") as f:
+            creds_dict = json.load(f)
 else:
+    print("⚠️ GOOGLE_CREDS not set, loading from credentials.json")
     with open("credentials.json", "r") as f:
         creds_dict = json.load(f)
+
 
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
@@ -144,4 +153,4 @@ def submissions():
     return render_template_string(html)
 if __name__ == '__main__': 
     port = int(os.environ.get("PORT", 5000)) 
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)
