@@ -5,40 +5,166 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simcursa | Digital Marketing</title>
   <style>
-    body {
-      background-image: url("{{ url_for('static', filename='images/digital-marketing-1.jpg') }}");
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
+     body {
       margin: 0;
       padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-end; /* Places content on the white area (right) */
+      align-items: center;
+      font-family: 'Century Gothic', Arial, sans-serif;
+      background: url("{{ url_for('static', filename='images/digital_marketing2.jpg') }}") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      transition: all 0.3s ease;
     }
     .container {
-      background: rgba(0, 0, 0, 0.6);
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #333;
+      width: 380px;
+      padding: 30px;
       border-radius: 15px;
+      margin-right: 8%; /* Adjust this value to fine-tune placement */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
+    label, td {
+      color: black;
+    }
+
     img.logo {
       width: 100px;
+      margin-bottom: 10px;
     }
-    a.option {
-      display: block;
-      background: #007bff;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-      text-decoration: none;
-      color: white;
+
+    h2 {
+      color: violet;
+      margin-bottom: 20px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      text-align: left;
+      width: 100%;
+    }
+
+    td {
+      padding: 10px;
       font-size: 16px;
-      transition: background 0.3s;
     }
-    a.option:hover {
+
+    label {
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: gray;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
       background: #0056b3;
     }
+    a.option {
+
+      display: block;
+
+      background: #007bff;
+
+      padding: 15px;
+
+      margin: 10px 0;
+
+      border-radius: 5px;
+
+      text-decoration: none;
+
+      color: white;
+
+      font-size: 16px;
+
+      transition: background 0.3s;
+
+    }
+
+    a.option:hover {
+
+      background: #0056b3;
+
+    }
+    /* ---- Responsive Design ---- */
+    @media (max-width: 1024px) {
+      body {
+        justify-content: center; /* Center on tablets */
+        background-position: center center;
+      }
+      .container {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-size: contain; /* Keeps image fully visible */
+        background-position: top;
+        height: auto;
+        padding: 20px;
+      }
+
+      .container {
+        width: 90%;
+        margin: 30px auto;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      img.logo {
+        width: 70px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background-size: cover;
+        background-position: top;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 16px;
+      }
+
+      img.logo {
+        width: 60px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      label, td {
+        font-size: 14px;
+      }
+    }s
   </style>
 </head>
 <body>
